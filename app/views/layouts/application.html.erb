@@ -2,31 +2,29 @@
 <html>
   <head>
     <title><%= title %></title>
-    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <%= stylesheet_link_tag    "blueprint/screen", :media => 'screen' %>
-    <%= stylesheet_link_tag    "blueprint/print",  :media => 'print' %>
-    <!--[if lt IE 8><%= stylesheet_link_tag 'bllueprint/ie' %><![endif]--> 
-    <%= stylesheet_link_tag    "custom",  :media => 'screen' %> 
   </head>
   <body>
     <div class="container">
-    <header>
-        <%= image_tag("logo.png", :alt =>  "Sample App", :class => "round")%>
-          <nav>
-             <ul class="round">
-               <li><%= link_to "Home",    '#' %></li>
-               <li><%= link_to "Help",    '#' %></li>
-               <li><%= link_to "Sign in", '#' %></li>
-             </ul>
-           </nav>
-         </header
-         <section class ="round">
-     <%= yield %>        
-     <div>
+      <header>
+        <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+          <nav class="round">
+            <ul>
+              <li><%= link_to "Home",    '#' %></li>
+              <li><%= link_to "Help",    '#' %></li>
+              <li><%= link_to "Sign in", '#' %></li>
+            </ul>
+         </nav>
+      </header>
+      <section class="round">
+        <%= yield %>
+      </section>
+    </div>
   </body>
 </html>
-
 
