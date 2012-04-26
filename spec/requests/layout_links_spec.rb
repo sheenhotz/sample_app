@@ -1,42 +1,42 @@
 require 'spec_helper'
 
 describe "LayoutLinks" do
-  it "should have a Home page at: /" do
-    get '/'
-    response.should have_selector('title', :content => "Home")
+
+  subject { page }
+
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_selector('h1',    text: 'Sample App') }
+    it { should have_selector('title', text: title('')) }
+    it { should_not have_selector 'title', text: '| Home' }
   end
 
-  it "should have an About page at: /about" do
-    get '/about'
-    response.should have_selector('title', :content => "About")
+  describe "Help page" do
+    before { visit help_path }
+
+    it { should have_selector('h1',    text: 'Help') }
+    it { should have_selector('title', text: title('Help')) }
   end
 
-  it "should have a Contact page at: /contact" do
-    get '/contact'
-    response.should have_selector('title', :content => "Contact")
+  describe "About page" do
+    before { visit about_path }
+
+    it { should have_selector('h1',    text: 'About') }
+    it { should have_selector('title', text: title('About Us')) }
   end
 
-  it "should have a Help page at: /help" do
-    get '/help'
-    response.should have_selector('title', :content => "Help")
-  end
+  describe "Contact page" do
+    before { visit contact_path }
 
-#  it "should have a Sign up page at: /signup" do
-#    get "/signup"
-#    response.should have_selector('title', :content => "Sign up")
+    it { should have_selector('h1',    text: 'Contact') }
+    it { should have_selector('title', text: title('Contact')) }
+  end
+  
+#  describe "Sign Up page" do
+#    before { visit contact_path }
+
+#    it { should have_selector('h1',    text: 'Sign Up') }
+#    it { should have_selector('title', text: title('Sign Up')) }
 #  end
-
-  it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    response.should have_selector('title', :content => "About")
-    click_link "Contact"
-    response.should have_selector('title', :content => "Contact")
-    click_link "Help"
-    response.should have_selector('title', :content => "Help")
-#    click_link "Sign up"
-#    response.should have_selector('title', :content => "Sign up")
-    click_link "Home"
-    response.should have_selector('title', :content => "Home")
-  end
 end
